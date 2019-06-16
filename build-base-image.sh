@@ -5,8 +5,8 @@
 
 ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-NAME="wp-base"
-TAG="fpm-alpine-$(date +%Y''%m''%d''%H''%M''%S)"
+NAME="wordpress-fpm-alpine"
+TAG="3.9-$(date +%Y''%m''%d''%H''%M''%S)"
 NS="knative-sample"
 
 docker build -t "${NAME}:${TAG}" -f ${ROOTDIR}/Dockerfile ${ROOTDIR}/
