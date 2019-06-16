@@ -1,12 +1,15 @@
 FROM php:7.1-fpm-alpine
 
 # docker-entrypoint.sh dependencies
-RUN echo "http://mirrors.aliyun.com/alpine/v3.8/main/" > /etc/apk/repositories; \
+RUN echo "http://mirrors.aliyun.com/alpine/v3.9/main/" > /etc/apk/repositories; \
     apk add --no-cache \
 # in theory, docker-entrypoint.sh is POSIX-compliant, but priority is a working, consistent image
 		bash \
 # BusyBox sed is not sufficient for some of our sed expressions
 		sed
+
+RUN apk add --no-cache -U tzdata && \
+    cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # install the PHP extensions we need (https://make.wordpress.org/hosting/handbook/handbook/server-environment/#php-extensions)
 RUN set -ex; \
